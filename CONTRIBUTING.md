@@ -1,53 +1,46 @@
-# Contributing to Skills Hub 🌟
+# Contributing to Skills Hub
 
-Thank you for wanting to make **Skills Hub** better! This project exists so that
-anyone can find the skills for their field, with direct links to learn each one.
+شكراً لرغبتك في تحسين **Skills Hub** — فهرس مهارات وكلاء الذكاء الاصطناعي (Agent Skills) على GitHub.
 
-## Ways to contribute
+## طرق المساهمة
 
-1. **Add a new field** (e.g., Photography, Aviation, Medicine...)
-2. **Add a skill or resource** to an existing field
-3. **Fix a broken link** (open an issue or a PR)
-4. **Improve the roadmap** of a field
+1. **إضافة مجال جديد** (فئة قسمية جديدة داخل الفهرس)
+2. **إضافة مهارة أو مجموعة مهارات مفقودة** مع وصفها ووسمها
+3. **إصلاح رابط معطّل** (افتح Issue أو PR)
+4. **تحسين المواجهة** (`index.html`)
 
-## How to add a new field
+## معايير القبول
 
-1. Create a new file: `docs/<field-name>.md`
-2. Follow the same structure as existing files:
+- الرابط يجب أن يشير إلى **مستودع GitHub حقيقي** يعمل فعلاً (متوفر عبر واجهة GitHub API)
+- كل مهارة تحتاج: **اسم + وصف بسيط + رابط مباشر + وسمите (tags)**
+- فضّل المهارات الموثقة أو ذات النجوم العالية والسجلات النشطة
+- لا يُسمح بروابط الرف (Affiliate) أو المحتوى الوهمي (Spam)
 
-```markdown
-# [Field Number]. [Field Name]
+## هيكل البيانات
 
-> One-line description of the field.
+كل المهارات موجودة في متغير واحد داخل `index.html`:
 
-## 🧭 Roadmap
-1. Step → 2. Step → 3. Step ...
-
-## 🛠️ Core Skills
-| Skill | Why it matters | Learn it (free) | Advanced |
-|-------|----------------|-----------------|----------|
-| ...   | ...            | ...             | ...      |
-
-## 🤝 Professional Skills
-| Skill | Notes | Resource |
-|-------|-------|----------|
-
-## 📚 Learning platforms
-| Platform | Type | Link |
-|----------|------|------|
+```js
+const DATA = [
+  {
+    cat: "dev", icon: "💻", title: "البرمجة وصناعة البرمجيات",
+    desc: "وصف المجال...",
+    skills: [
+      { name: "اسم المهارة", link: "https://github.com/owner/repo",
+        owner: "owner", desc: "وصف المهارة", tags: ["Tag1", "Tag2"] }
+    ]
+  }
+];
 ```
 
-3. Add your field to the index table in the main `README.md`
-4. Open a Pull Request with a clear title, e.g. `Add field: Photography`
+لإضافة مجال جديد: أضف كائناً جديداً بـ `cat` فريد + `icon` + `title` + `desc` + مصفوفة `skills`.
 
-## Rules for links
+## قبل فتح Pull Request
 
-- Prefer **high-quality free resources**
-- Paid resources are allowed but must be obviously marked as paid
-- Do **not** add affiliate links or spam
-- Test every link before submitting it
+1. تأكد أن كل رابط يفتح صفحة GitHub صحيحة (لا 404)
+2. تأكد أن الوصف دقيق وليس تضخيماً
+3. تحدّث الجداول المقابلة في `README.md`
 
-## Code of conduct
+## سجل إبلاغ مشترك
 
-Be respectful. This project is for learners of every level, in every country,
-in every language. Critique resources, not people.
+كن محترماً — هذا مشروع للمتعلّمين بكل المستويات.
