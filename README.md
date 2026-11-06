@@ -16,6 +16,7 @@
 |---------|-----------|--------|
 | ⭐ **Superpowers** (14 مهارة) | منهج كامل: عصف ذهني ← تخطيط ← TDD ← تصحيح ← مراجعة | [obra/superpowers](https://github.com/obra/superpowers) |
 | Test Automation | اختبارات أتمتة بجودة إنتاجية | [LambdaTest/agent-skills](https://github.com/LambdaTest/agent-skills) |
+| agent-qa (4 مهارات) | تأليف الاختبارات، تشخيص الإخفاقات وإصلاحها، وفحص أدلة التشغيل والمعرفة المتعلّمة | [vostride/agent-qa](https://github.com/vostride/agent-qa/tree/main/skills) · [الموقع الرسمي](https://vostride.com) |
 | Finding Unknowns (8 مهارات) | كشف مجاهيل المشروع قبل أن تصبح مكلفة | [Neeeophytee/finding-unknowns-skills](https://github.com/Neeeophytee/finding-unknowns-skills) |
 | Taste Skill | ذوق تصميمي حقيقي للواجهات | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) |
 
