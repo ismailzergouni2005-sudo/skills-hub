@@ -1,0 +1,31 @@
+name: Check README and docs
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 9 * * 1'   # every Monday 09:00 UTC
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify all internal doc links resolve to files
+        shell: bash
+        run: |
+          set -e
+          fail=0
+          for f in README.md docs/*.md; do
+            # Extract markdown links to local .md files and check they exist
+            grep -oE '\]\(([^)#]+\.md)\)' "$f" | sed -E 's/.*\]\(([^)#]+)\)/\1/' | while read -r link; do
+              base="$(dirname "$f")"
+              target="$base/$link"
+              if [ "$(basename "$f")" = "README.md" ] && [ ! -f "$target" ]; then target="$link"; fi
+              if [ ! -f "$target" ]; then
+                echo "BROKEN: $f -> $link"
+                exit 1
+              fi
+            done
+          done
+          echo "All internal links OK ✓"
