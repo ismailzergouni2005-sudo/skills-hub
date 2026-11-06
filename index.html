@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills Hub — فهرس مهارات وكلاء الذكاء الاصطناعي على GitHub</title>
+<meta name="description" content="فهرس تفاعلي لأفضل مهارات AI Agents (Agent Skills) الموجودة على GitHub، مصنّفة حسب المجال، مع روابط مباشرة لكل مهارة.">
+<meta property="og:title" content="Skills Hub — كل مهارات الوكلاء في مكان واحد">
+<meta property="og:description" content="اختر مجالك وشاهد كل مهارات الوكلاء AI مع روابطها على GitHub">
+<style>
+  :root{
+    --bg:#0b0f19; --bg2:#111827; --card:#151b2e; --card-hover:#1b2340;
+    --border:#24304d; --text:#e5e7eb; --muted:#94a3b8; --accent:#8b5cf6;
+    --accent2:#06b6d4; --gold:#f59e0b; --green:#10b981;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+  a{color:inherit}
+
+  /* ======= HERO ======= */
+  header{padding:64px 24px 40px;text-align:center;position:relative;overflow:hidden;
+    background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(139,92,246,.25),transparent),
+               radial-gradient(ellipse 60% 40% at 80% 0%,rgba(6,182,212,.15),transparent)}
+  .badge{display:inline-block;padding:6px 14px;border:1px solid var(--border);border-radius:999px;
+    font-size:13px;color:var(--muted);background:rgba(255,255,255,.03);margin-bottom:20px}
+  h1{font-size:clamp(28px,5vw,46px);font-weight:800;line-height:1.25;margin-bottom:14px}
+  h1 .grad{background:linear-gradient(90deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  header p.sub{color:var(--muted);max-width:640px;margin:0 auto 30px;font-size:16px;line-height:1.8}
+  .stats{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:34px}
+  .stat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px 26px}
+  .stat b{display:block;font-size:24px;color:var(--accent2)}
+  .stat span{font-size:12px;color:var(--muted)}
+  .search-wrap{max-width:620px;margin:0 auto;position:relative}
+  .search-wrap input{width:100%;padding:15px 48px 15px 24px;border-radius:14px;border:1px solid var(--border);
+    background:var(--bg2);color:var(--text);font-size:16px;outline:none;transition:.2s}
+  .search-wrap input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(139,92,246,.15)}
+  .search-wrap svg{position:absolute;right:16px;top:50%;transform:translateY(-50%);opacity:.4}
+
+  /* ======= CATEGORIES ======= */
+  main{max-width:1180px;margin:0 auto;padding:30px 24px 80px}
+  .cats{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:26px 0 36px;position:sticky;top:0;
+    background:rgba(11,15,25,.92);backdrop-filter:blur(10px);padding:14px 0;z-index:10;border-bottom:1px solid var(--border)}
+  .cat-btn{padding:9px 18px;border-radius:999px;border:1px solid var(--border);background:transparent;
+    color:var(--muted);cursor:pointer;font-size:14px;font-family:inherit;transition:.2s}
+  .cat-btn:hover{border-color:var(--accent);color:var(--text)}
+  .cat-btn.active{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;border-color:transparent;font-weight:700}
+
+  .section-title{display:none;font-size:22px;font-weight:800;margin:8px 0 6px;color:var(--accent2)}
+  .cat-desc{display:none;color:var(--muted);font-size:14px;line-height:1.9;margin-bottom:20px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;
+    display:flex;flex-direction:column;gap:10px;transition:.2s;position:relative}
+  .card:hover{background:var(--card-hover);border-color:var(--accent);transform:translateY(-3px)}
+  .card-top{display:flex;align-items:center;gap:10px}
+  .icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+    font-size:19px;flex-shrink:0;background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(6,182,212,.2))}
+  .card h3{font-size:16.5px;font-weight:700;line-height:1.5;word-break:break-word}
+  .card h3 a{text-decoration:none}
+  .card h3 a:hover{color:var(--accent2)}
+  .card p{color:var(--muted);font-size:13.5px;line-height:1.85;flex:1}
+  .owner{font-size:11.5px;color:var(--gold);direction:ltr;text-align:left}
+  .tags{display:flex;gap:6px;flex-wrap:wrap}
+  .tag{font-size:10.5px;padding:4px 9px;border-radius:6px;background:rgba(6,182,212,.12);
+    color:var(--accent2);border:1px solid rgba(6,182,212,.2)}
+  .tag.official{background:rgba(16,185,129,.12);color:var(--green);border-color:rgba(16,185,129,.25)}
+  .visit{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;text-decoration:none;
+    color:var(--accent2);font-weight:700;direction:ltr}
+  .visit:hover{text-decoration:underline}
+
+  .empty{display:none;text-align:center;padding:70px 20px;color:var(--muted)}
+  .empty b{font-size:20px;display:block;margin-bottom:8px;color:var(--text)}
+
+  /* ======= FOOTER ======= */
+  footer{border-top:1px solid var(--border);padding:36px 24px;text-align:center;color:var(--muted);font-size:13.5px;line-height:2}
+  footer a{color:var(--accent2);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+  .howto{max-width:760px;margin:40px auto 0;background:var(--card);border:1px solid var(--border);
+    border-radius:16px;padding:26px;text-align:right}
+  .howto h2{color:var(--accent2);font-size:18px;margin-bottom:14px}
+  .howto ol{padding-right:20px;line-height:2.4;color:var(--muted);font-size:14px}
+  .howto code{direction:ltr;display:inline-block;background:var(--bg2);border:1px solid var(--border);
+    padding:2px 8px;border-radius:6px;color:var(--accent);font-size:12.5px}
+  @media(max-width:600px){.stats{gap:8px}.stat{padding:10px 16px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">✦ Agent Skills — المعيار المفتوح لكل وكلاء الذكاء الاصطناعي (Claude Code · Codex · Cursor · Gemini CLI · OpenCode)</div>
+  <h1>Skills Hub<br><span class="grad">كل مهارات الوكلاء على GitHub في مكان واحد</span></h1>
+  <p class="sub">اختر مجالك من الأزرار بالأسفل وستظهر لك فوراً كل المهارات (Skills) المتوفرة في هذا المجال — كل مهارة مع وصفها ورابطها المباشر على GitHub.</p>
+  <div class="stats">
+    <div class="stat"><b id="stat-skills">50+</b><span>مهارة</span></div>
+    <div class="stat"><b id="stat-cats">11</b><span>مجالاً</span></div>
+    <div class="stat"><b>100%</b><span>روابط حقيقية</span></div>
+  </div>
+  <div class="search-wrap">
+    <input id="search" type="text" placeholder="ابحث عن مهارة… مثال: PDF ، TDD ، SEO ، أمن سيبراني">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+  </div>
+</header>
+
+<main>
+  <div class="cats" id="cats"></div>
+  <h2 class="section-title" id="sec-title"></h2>
+  <p class="cat-desc" id="sec-desc"></p>
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty"><b>لا توجد نتائج مطابقة 🔍</b>جرّب كلمة بحث أخرى أو اختر مجالاً مختلفاً</div>
+</main>
+
+<footer>
+  <p>Skills Hub — فهرس مفتوح المصدر لمهارات الوكلاء (Agent Skills) على GitHub.<br>
+  المصدر المفتاحي للمعيار: <a href="https://agentskills.io" target="_blank" rel="noopener">agentskills.io</a> ·
+  المستودع الرسمي من Anthropic: <a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">anthropics/skills</a></p>
+  <div class="howto">
+    <h2>🧩 كيف أثبّت أي مهارة؟</h2>
+    <ol>
+      <li><b>في Claude Code:</b> ضع مجلد المهارة في <code>~/.claude/skills</code> — أو أضف مستودعاً كاملاً كسوق إضافات عبر <code>/plugin marketplace add owner/repo</code></li>
+      <li><b>في Claude.ai / Cowork:</b> من الإعدادات ← Customize ← Skills ← "＋" وارفع ملف <code>SKILL.md</code> أو ملف zip الخاص بالمهارة</li>
+      <li><b>في Codex / Cursor / Gemini CLI / OpenCode</b>: نفس الصيغة المفتوحة — انسخ مجلد المهارة إلى مجلد skills الخاص بأداةك (مثل <code>.codex/skills</code> أو <code>.cursor/skills</code>)</li>
+      <li><b>ملاحظة أمان:</b> المهارات ملفات نصية، لكن راجع السكربتات داخلها قبل تشغيلها، وفضّل المستودعات الموثقة والنجوم العالية</li>
+    </ol>
+  </div>
+</footer>
+
+<script>
+const DATA=[
+{cat:"dev",icon:"💻",title:"البرمجة وصناعة البرمجيات",desc:"مهارات فرض منهجيات عمل هندسية على الوكيل: التخطيط، TDD، مراجعة الكود، التصحيح المنهجي، وإدارة الفروع. أنجع مجموعة على الإطلاق لمشاريع حقيقية.",skills:[
+{name:"Superpowers (14 مهارة)",link:"https://github.com/obra/superpowers",owner:"obra",desc:"إطار عمل كامل يجبر الوكيل على: العصف الذهني ← التخطيط ← TDD ← التصحيح المنهجي ← مراجعة الكود ← الإنهاء. أشهر مجموعة مهارات على GitHub.",tags:["TDD","Debugging","Planning"]},
+{name:"Test Driven Development",link:"https://github.com/obra/superpowers",owner:"obra (ضمن Superpowers)",desc:"فرض دورة RED / GREEN / REFACTOR حقيقية على الوكيل — يمنع كتابة الكود قبل الاختبار.",tags:["TDD","Testing"]},
+{name:"Brainstorming",link:"https://github.com/obra/superpowers",owner:"obra (ضمن Superpowers)",desc:"لا يكتب الوكيل أي كود قبل أن يسأل أسئلة توضيحية ويعرض سؤال تصميم تقبله.",tags:["Planning","Design"]},
+{name:"Systematic Debugging",link:"https://github.com/obra/superpowers",owner:"obra (ضمن Superpowers)",desc:"عملية من 4 مراحل لتحليل السبب الجذري للأخطاء بدل التخمين العشوائي.",tags:["Debugging"]},
+{name:"Using Git Worktrees",link:"https://github.com/obra/superpowers",owner:"obra (ضمن Superpowers)",desc:"إنشاء مساحات عمل معزولة على فروع جديدة قبل أي تعديل كبير.",tags:["Git","Workflow"]},
+{name:"Test Automation (LambdaTest)",link:"https://github.com/LambdaTest/agent-skills",owner:"LambdaTest",desc:"مهارات رسمية تعلّم الوكيل كتابة اختبارات أتمتة بجودة إنتاجية (Playwright وغيرها).",tags:["Testing","Official"]},
+{name:"Finding Unknowns",link:"https://github.com/Neeeophytee/finding-unknowns-skills",owner:"Neeeophytee",desc:"8 مهارات ميتا تجعل الوكيل يكشف مجاهيل المشروع قبل أن تصبح مكلفة: blindspot pass، مقابلة أسئلة، خطة تنفيذ.",tags:["Meta","Planning"]},
+{name:"Taste Skill",link:"https://github.com/Leonxlnx/taste-skill",owner:"Leonxlnx",desc:"منح الوكيل «ذوقاً» في التصميم: art direction وصور مرجعية وفحص بالمتصفح بدل صفحات AI Generic.",tags:["UI","Design"]},
+]},
+{cat:"docs",icon:"📄",title:"المستندات وأدوات المكتب",desc:"مهارات إنشاء وتحرير المستندات المكتبية عبر الوكيل — معظمها رسمية من Anthropic وتشغّل منتجات Claude فعلياً.",skills:[
+{name:"docx — Word",link:"https://github.com/anthropics/skills/tree/main/skills/docx",owner:"anthropics",desc:"إنشاء وتحرير وتحليل ملفات Word برمجياً — مهارة رسمية تُشغّل ميزة مستندات Claude.",tags:["Official","Office"]},
+{name:"pptx — PowerPoint",link:"https://github.com/anthropics/skills/tree/main/skills/pptx",owner:"anthropics",desc:"إنشاء وتحرير عروض PowerPoint التقديمية مع تحليل الملفات الحالية.",tags:["Official","Office"]},
+{name:"xlsx — Excel",link:"https://github.com/anthropics/skills/tree/main/skills/xlsx",owner:"anthropics",desc:"إنشاء وتحرير جداول Excel مع الصيغ والمعادلات.",tags:["Official","Office"]},
+{name:"pdf",link:"https://github.com/anthropics/skills/tree/main/skills/pdf",owner:"anthropics",desc:"استخراج النصوص وإنشاء ملفات PDF ومعالجة النماذج.",tags:["Official","Office"]},
+{name:"doc-coauthoring",link:"https://github.com/anthropics/skills",owner:"anthropics",desc:"كتابة مستندات تشاركية وتحرير مشترك مع الوكيل (كتابة ثم مراجعة ثم صياغة).",tags:["Official","Writing"]},
+{name:"Nutrient Document Processing",link:"https://github.com/PSPDFKit-labs/nutrient-agent-skill",owner:"PSPDFKit-labs",desc:"تحويل مستندات (PDF/DOCX/XLSX/PPTX)، OCR بأكثر من 20 لغة، حجب PII، توقيعات رقمية، وملء نماذج.",tags:["PDF","OCR"]},
+{name:"Notion Skills",link:"https://github.com/tommy-ca/notion-skills",owner:"tommy-ca",desc:"مهارات Notion المنتجة: التقاط المعرفة، ربط المهام، وأتمتة مساحة العمل الخاصة بك.",tags:["Notion","Productivity"]},
+{name:"NanoBanana PPT Skills",link:"https://github.com/op7418/NanoBanana-PPT-Skills",owner:"op7418",desc:"توليد عروض تقديمية قوية بمساعدة AI مع تحليل مستندات وصور منسقة.",tags:["PPT","AI"]},
+]},
+{cat:"design",icon:"🎨",title:"التصميم والإبداع البصري",desc:"مهارات جعل الوكيل مصمماً حقيقياً: هوية بصرية، فن خوارزمي، ثيمات ألوان، وعروض تفاعلية.",skills:[
+{name:"Frontend Design",link:"https://github.com/anthropics/skills",owner:"anthropics",desc:"توليد واجهات بجودة إنتاجية تتجنب مظهر «AI Slop» الجاهز والمكرر.",tags:["Official","UI"]},
+{name:"Web Artifacts Builder",link:"https://github.com/anthropics/skills/tree/main/skills/web-artifacts-builder",owner:"anthropics",desc:"بناء artifacts تفاعلية بـ React + Tailwind داخل واجهة Claude.",tags:["Official","React"]},
+{name:"Canvas Design",link:"https://github.com/anthropics/skills/tree/main/skills/canvas-design",owner:"anthropics",desc:"تصميم بصري بجودة المتاحف والمجلات: تكوين متقن، أنماط، وتدرجات لونية مدروسة عبر الرسم البرمجي.",tags:["Official","Art"]},
+{name:"Algorithmic Art",link:"https://github.com/anthropics/skills/tree/main/skills/algorithmic-art",owner:"anthropics",desc:"فنّ توليدي باستخدام p5.js مع عشوائية مُبذّرة (Reproducible).",tags:["Official","Art"]},
+{name:"Theme Factory",link:"https://github.com/anthropics/skills",owner:"anthropics",desc:"10 ثيمات ألوان احترافية جاهزة للتوليد مع أي مشروع بصري.",tags:["Official","Color"]},
+{name:"Brand Guidelines",link:"https://github.com/anthropics/skills/tree/main/skills/brand-guidelines",owner:"anthropics",desc:"هوية بصرية كاملة من Anthropic كنموذج تطبيقي لدليل الهوية مع الوكلاء.",tags:["Official","Branding"]},
+{name:"Slack GIF Creator",link:"https://github.com/anthropics/skills",owner:"anthropics",desc:"إنشاء GIFs متحركة بأبعاد Slack المحسّنة.",tags:["Official","GIF"]},
+]},
+{cat:"security",icon:"🔒",title:"الأمن السيبراني",desc:"مجموعات جاهزة للتشغيل: اختبار اختراق، CTF، تحليل مقاومة، وحماية الخصوصية.",skills:[
+{name:"CTF Skills",link:"https://github.com/ljagiello/ctf-skills",owner:"ljagiello",desc:"مهارات حل مسابقات CTF: استغلال الويب، Binary Pwn، التشفير، الهندسة العكسية، Forensics، OSINT.",tags:["CTF","Pentesting"]},
+{name:"Black Hat × Anthropic Skills (753 مهارة)",link:"https://github.com/mukul975/BHUSA-Anthropic-CyberSecurity-Skills",owner:"mukul975",desc:"أكثر من 750 مهارة أمن سيبراني مصنّفة ومربوطة بمخطط MITRE ATT&CK مع سكربتات دعم للتحليل الجنائي (من Black Hat USA).",tags:["MITRE","Forensics"]},
+{name:"Privacy & Data Protection (282+ مهارة)",link:"https://github.com/mukul975/Privacy-Data-Protection-Skills",owner:"mukul975",desc:"282+ مهارة منظّمة للخصوصية وحماية البيانات: GDPR، CCPA، EU AI Act، HIPAA — جاهزة للوكلاء القانونية.",tags:["GDPR","Compliance"]},
+]},
+{cat:"cloud",icon:"☁️",title:"السحابة و DevOps",desc:"مهارات البنية التحتية: Terraform، AWS، CI/CD، وأدوات العمليات.",skills:[
+{name:"Terraform Skill",link:"https://github.com/antonbabenko/terraform-skill",owner:"antonbabenko",desc:"أنماط Terraform و OpenTofu المناسة: للاختبارات، الوحدات Mini State، و CI/CD — من صناع مناهج Terraform المشهورة.",tags:["IaC","Terraform"]},
+{name:"AWS Skills",link:"https://github.com/zxkane/aws-skills",owner:"zxkane",desc:"تطوير AWS وأتمتة البنية التحتية وأنماط معمارية السحابة.",tags:["AWS","Cloud"]},
+{name:"SuperCLI (4,795+ مهارة CLI)",link:"https://github.com/javimosch/supercli",owner:"javimosch",desc:"موجّه CLI شامل: يكتشف أدوات سطر الأوامر حسب النية، ويفحص Schemas وينفذ باستجابات JSON حتمية لأكثر من 7,000 أداة.",tags:["CLI","Automation"]},
+]},
+{cat:"data",icon:"📊",title:"علوم البيانات والبحث العلمي",desc:"مهارات تحليل البيانات والمجالات الطبية والعلمية مع قواعد بيانات مدمجة.",skills:[
+{name:"Scientific Agent Skills (177+100)",link:"https://github.com/k-dense-ai/scientific-agent-skills",owner:"K-Dense-AI",desc:"أكبر مكتبة مهارات علمية: 177 مهارة موثّقة + أكثر من 100 قاعدة بيانات في البيولوجيا والكيمياء والطبية واكتشاف الأدوية.",tags:["Science","Official"]},
+{name:"Codebase Knowledge Graph",link:"https://github.com/Lum1104/understand-anything",owner:"Lum1104",desc:"رسوم بيانية تفاعلية لفهم قاعدة كود كاملة عبر تحليل متعدد الوكلاء.",tags:["Analysis","Codebase"]},
+]},
+{cat:"marketing",icon:"📣",title:"التسويق والنمو",desc:"مهارات محترفة في النمو السحابي والتسويق الرقمي — من المهارات الأعلى نجمة في المجال التسويقي.",skills:[
+{name:"Marketingskills",link:"https://github.com/coreyhaines31/marketingskills",owner:"coreyhaines31",desc:"أكبر مجموعة تسويق للوكلاء (58k نجمة): CRO، كتابة إعلانات، SEO، تحليلات، هندسة النمو، و GEO (تحسين محركات التوليد).",tags:["CRO","SEO","Growth"]},
+{name:"Marketing Suite (Markdown صافي)",link:"https://github.com/coreyhaines31/marketingskills",owner:"coreyhaines31",desc:"33+ ملف SKILL.md نقي للتسويق: SEO، CRO، كتابة إعلانات، تحليلات، ونمو — بدون كود تنفيذي أو اتصالات شبكة.",tags:["SEO","Copywriting"]},
+]},
+{cat:"business",icon:"💼",title:"الأعمال والمنتجات",desc:"مهارات استراتيجية وقيادية: مدير منتج، مدير مشروع، Scrum، تفكير نقدي، مجلس إدارة.",skills:[
+{name:"Method-Driven Skills",link:"https://github.com/tronghieu/agent-skills",owner:"tronghieu",desc:"مهارات «معرفية» حسب الوظيفة: Strategy، Research، Critical Thinking، Product Manager، Scrum Master، Strategy Board للقرارات الكبرى.",tags:["Strategy","PM"]},
+{name:"410 Skills & Agents",link:"https://github.com/alirezarezvani/claude-skills",owner:"alirezarezvani",desc:"410+ مهارات ووكلاء: 120+ وكيل، أوامر مخصصة، تغطي الهندسة والتسويق والمنتج والامتثال والعمليات والتمويل.",tags:["Multi","Business"]},
+]},
+{cat:"integration",icon:"🔌",title:"الأدوات والتكامل",desc:"مهارات ربط الوكلاء بآلاف الخدمات والمواقع الخارجية.",skills:[
+{name:"Zapier MCP",link:"https://github.com/zapier/zapier-mcp",owner:"zapier",desc:"التوزيع الرسمي لخدمة Zapier MCP: وصّل Claude بآلاف التطبيقات — رسائل، استخراج بيانات، وتشغيل سير عمل.",tags:["Official","Zapier"]},
+{name:"Claude API Skill",link:"https://github.com/anthropics/skills",owner:"anthropics",desc:"مرجع API محدّث + SDK وأفضل الممارسات لـ 8 لغات برمجة — مدمج مع Claude Code.",tags:["Official","API"]},
+{name:"MCP Builder",link:"https://github.com/anthropics/skills/tree/main/skills/mcp-builder",owner:"anthropics",desc:"مهارة توليد خوادم MCP كاملة بكود Python و TypeScript.",tags:["Official","MCP"]},
+]},
+{cat:"writing",icon:"✍️",title:"الكتابة والمحتوى",desc:"مهارات الكتابة الاحترافية وبشكل إنساني.",skills:[
+{name:"Humanizer",link:"https://github.com/blader/humanizer",owner:"blader",desc:"إزالة آثار الكتابة الاصطناعية من أي نص وإعادته لصوتٍ بشري طبيعي (65k+ نجمة).",tags:["Writing","Humanize"]},
+]},
+{cat:"meta",icon:"🧪",title:"المهارات الميتا (صناعة المهارات)",desc:"مهارات تصنع مهارات: الالتزام بالمواصفات، الفحص والتقييم، والتحسين المستمر.",skills:[
+{name:"skill-creator (رسمي)",link:"https://github.com/anthropics/skills/tree/main/skills/skill-creator",owner:"anthropics",desc:"الطريقة الرسمية من Anthropic لإنشاء مهارة جديدة ستراعي كل مواصفات SKILL.md.",tags:["Official","Meta"]},
+{name:"eskill",link:"https://github.com/hedralab/eskill",owner:"hedralab",desc:"ميتا-مهارة لبناء مهارات ذروة المواصفة + حلقة تقييم (Eval) + تخفير طلب البحث.",tags:["Meta","Eval"]},
+{name:"skill-optimizer",link:"https://github.com/hqhq1025/skill-optimizer",owner:"hqhq1025",desc:"تشخيص وتحسين أي مهارة AGENT SKILL بصيانة جلسات حقيقية وتحليل سلبي، متوافق مع Claude Code و Codex.",tags:["Meta","Optimize"]},
+{name:"Writing Skills (ضمن Superpowers)",link:"https://github.com/obra/superpowers",owner:"obra",desc:"مهارة «كاتب» تُحوّل أي شرح من الوكيل إلى مهارة رسمية قابلة لإعادة الاستخدام.",tags:["Meta","Method"]},
+]},
+{cat:"collections",icon:"🗂️",title:"المجموعات الكبرى (Start Here)",desc:"مستودعات فهرسة شاملة تضم آلاف المهارات — أفضل نقطة انطلاق لاستكشاف كل شيء.",skills:[
+{name:"anthropics/skills (الرسمي)",link:"https://github.com/anthropics/skills",owner:"anthropics",desc:"المستودع الرسمي من Anthropic لكل مهارات الوكلاء، ويحتوي المهارات المستندية قيد الإنتاج (docx/pptx/xlsx/pdf) و spec المعيار المفتوح.",tags:["⭐ 180k","Official","معيار"]},
+{name:"awesome-agent-skills (1000+)",link:"https://github.com/VoltAgent/awesome-agent-skills",owner:"VoltAgent",desc:"قائمة منسّقة تضم أكثر من 1000 مهارة من الفرق الرسمية والمجتمع، متوافقة مع كل الوكلاء.",tags:["⭐ 36k","1000+"]},
+{name:"awesome-claude-skills (Composio)",link:"https://github.com/ComposioHQ/awesome-claude-skills",owner:"ComposioHQ",desc:"كاتالوج ضخم منسّق من Composio ويشمل كل شيء من الهندسة إلى الأتمتة — من أشهر قوائم Agent Skills على GitHub.",tags:["⭐ 78k","مجموعة"]},
+{name:"awesome-claude-skills (travisvn)",link:"https://github.com/travisvn/awesome-claude-skills",owner:"travisvn",desc:"قائمة مصممة للمبتدئين: كيفية تثبيت أي مهارة خطوة بخطوة وروابط الأسواق الرسمية.",tags:["Beginner","Guide"]},
+{name:"awesome-claude-code",link:"https://github.com/hesreallyhim/awesome-claude-code",owner:"hesreallyhim",desc:"قائمة ضخمة لموارد Claude Code: مهارات وأوامر وhooks وإعدادات متقدمة.",tags:["Community","⭐ 57k"]},
+{name:"awesome-agent-skills (heilcheng)",link:"https://github.com/heilcheng/awesome-agent-skills",owner:"heilcheng",desc:"دليل لمئات المستودعات مصنّفة بمجالات: التعليم، القصة والإبداع، الوسائط، الأمن، والأتمتة.",tags:["Directory"]},
+]},
+];
+
+window.addEventListener('DOMContentLoaded',()=>{
+  const catsEl=document.getElementById('cats'),grid=document.getElementById('grid'),
+        secT=document.getElementById('sec-title'),secD=document.getElementById('sec-desc'),
+        empty=document.getElementById('empty'),input=document.getElementById('search');
+  let active='all',q='';
+  const totalSkills = DATA.reduce((a,c)=>a+c.skills.length,0);
+  document.getElementById('stat-skills').textContent = totalSkills;
+  document.getElementById('stat-cats').textContent = DATA.length;
+  const cats=[{id:'all',title:'كل المجالات',icon:'✦'},...DATA.map(c=>({id:c.cat,title:c.title,icon:c.icon}))];
+
+  cats.forEach(c=>{
+    const b=document.createElement('button');b.className='cat-btn'+(c.id==='all'?' active':'');
+    b.innerHTML=c.icon+' '+c.title;b.onclick=()=>{active=c.id;document.querySelectorAll('.cat-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');render()};
+    catsEl.appendChild(b);
+  });
+
+  function render(){
+    grid.innerHTML='';let shown=0;
+    DATA.filter(c=>active==='all'||c.cat===active).forEach(c=>{
+      const skills=c.skills.filter(s=>!q||(s.name+' '+s.desc+' '+s.tags.join(' ')+' '+c.title).toLowerCase().includes(q));
+      skills.forEach(s=>{
+        shown++;
+        const d=document.createElement('div');d.className='card';
+        d.innerHTML=`<div class="card-top"><div class="icon">${c.icon}</div><h3><a href="${s.link}" target="_blank" rel="noopener">${s.name}</a></h3></div>
+          <p>${s.desc}</p><div class="owner">github.com/${s.owner}</div>
+          <div class="tags">${s.tags.map((t,i)=>`<span class="tag${/Official/i.test(t)||/رسمي/.test(t)?' official':''}">${t}</span>`).join('')}</div>
+          <a class="visit" href="${s.link}" target="_blank" rel="noopener">فتح على GitHub ↗</a>`;
+        grid.appendChild(d);
+      });
+      if(active!=='all'&&skills.length){
+        secT.style.display='block';secD.style.display='block';
+        secT.textContent=c.icon+' '+c.title;secD.textContent=c.desc;
+      }else if(active!=='all'){secT.style.display='none';secD.style.display='none'}
+    });
+    if(active==='all'){secT.style.display='none';secD.style.display='none'}
+    empty.style.display=shown?'none':'block';
+  }
+  input.addEventListener('input',()=>{q=input.value.trim().toLowerCase();render()});
+  render();
+});
+</script>
+</body>
+</html>
